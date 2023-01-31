@@ -1,7 +1,7 @@
-from drive import download_file_from_drive
 from constants import FILE_IDS, RAW_FILE_FOLDER
 import os
 import shutil
+import gdown
 
 
 def create_raw_file_folder():
@@ -13,7 +13,7 @@ def create_raw_file_folder():
 def download_files():
     for index, file_id in enumerate(FILE_IDS):
         print(f"Downloading file {index+1}/4")
-        download_file_from_drive(file_id, f"{RAW_FILE_FOLDER}/file{index}.txt")
+        gdown.download(id=file_id, output=f"{RAW_FILE_FOLDER}/file{index}.txt")
 
 
 def main():
