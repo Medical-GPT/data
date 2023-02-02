@@ -1,13 +1,6 @@
 from constants import FILE_IDS, RAW_FILE_FOLDER
-import os
-import shutil
+from utils import create_folder
 import gdown
-
-
-def create_raw_file_folder():
-    if os.path.exists(RAW_FILE_FOLDER):
-        shutil.rmtree(RAW_FILE_FOLDER)
-    os.mkdir(RAW_FILE_FOLDER)
 
 
 def download_files():
@@ -17,7 +10,7 @@ def download_files():
 
 
 def main():
-    create_raw_file_folder()
+    create_folder(RAW_FILE_FOLDER)
     download_files()
 
 

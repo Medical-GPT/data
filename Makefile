@@ -38,9 +38,23 @@ clean: ## Cleans up temporary files
 
 download: ## Downloads the raw files used for training
 	@echo "==> Downloading files..."
-	@venv/bin/python src/download/download.py
+	@venv/bin/python src/download.py
 	@echo "    [✓]"
 	@echo
+
+concat: ## Concat raw files into a single file
+	@echo "==> Concatenating files..."
+	@venv/bin/python src/concat.py
+	@echo "    [✓]"
+	@echo
+
+preprocess: ## Preprocess concatenated file (created if not present)
+	@echo "==> Preprocessing file..."
+	@venv/bin/python src/preprocess.py
+	@echo "    [✓]"
+	@echo
+
+	
 
 .PHONY: install uninstall clean help
 help: ## Shows available targets
