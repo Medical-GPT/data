@@ -9,8 +9,8 @@ FILE_IDS = [
 
 ROOT_DIR = "/".join(os.path.dirname(os.path.abspath(__file__)).split("/")[:-1])
 
-RAW_FILE_FOLDER = f"{ROOT_DIR}/raw_files"
-
-PREPROCESSED_FILE_FOLDER = f"{RAW_FILE_FOLDER}/preprocessed"
+DATA_FOLDER = f"{ROOT_DIR}/data"
+RAW_FILE_FOLDER = f"{DATA_FOLDER}/raw"
+PREPROCESSED_FILE_FOLDER = f"{DATA_FOLDER}/preprocessed"
 COMBINED_FILE = f"{PREPROCESSED_FILE_FOLDER}/combined.txt"
 PREPROCESSED_FILE = f"{PREPROCESSED_FILE_FOLDER}/preprocessed.txt"

@@ -1,4 +1,4 @@
-from constants import FILE_IDS, RAW_FILE_FOLDER
+from constants import FILE_IDS, DATA_FOLDER, RAW_FILE_FOLDER
 from utils import create_folder
 import gdown
 
@@ -10,6 +10,7 @@ def download_files():
 
 
 def main():
+    create_folder(DATA_FOLDER)
     create_folder(RAW_FILE_FOLDER)
     download_files()
 
