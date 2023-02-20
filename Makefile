@@ -54,6 +54,12 @@ preprocess: ## Preprocess concatenated file (created if not present)
 	@echo "    [✓]"
 	@echo
 
-.PHONY: install uninstall clean dwonload concat preprocess help
+remove_special: ## Remove special characters from dataset
+	@echo "==> Cleaning up file..."
+	@venv/bin/python src/clean_special_characters.py
+	@echo "    [✓]"
+	@echo
+
+.PHONY: install uninstall clean dwonload concat preprocess remove_special help
 help: ## Shows available targets
 	@fgrep -h "## " $(MAKEFILE_LIST) | fgrep -v fgrep | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-13s\033[0m %s\n", $$1, $$2}'
