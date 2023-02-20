@@ -1,5 +1,6 @@
 from concat import concat_raw_files
 from constants import COMBINED_FILE, PREPROCESSED_FILE
+from spellcheck import correct_mistakes
 import copy
 import random
 import os
@@ -15,7 +16,6 @@ def write_object(object, file):
 
 
 def preprocess(input_file_path, output_file_path):
-
     object_default = {
         "description": "",
         "patient": "",
@@ -27,11 +27,11 @@ def preprocess(input_file_path, output_file_path):
     with open(input_file_path, "r") as input_file, \
         open(output_file_path, "w") as output_file:
     # fmt: on
-        
+
         input_file.readline()
         input_file.readline()
         input_file.readline()
-        
+
         setting = None
 
         for line in input_file:
