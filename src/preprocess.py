@@ -1,9 +1,21 @@
 from concat import concat_raw_files
 from constants import COMBINED_FILE, PREPROCESSED_FILE
-from spellcheck import correct_mistakes
 import copy
 import random
 import os
+from tqdm import tqdm
+import language_tool_python
+from utils import get_num_lines
+
+# Start a Java server for spelling correction
+LANGUAGE_TOOL = language_tool_python.LanguageTool("en-US")
+
+
+def correct_object(object):
+    ret = {}
+    for key, value in object.items():
+        ret[key] = LANGUAGE_TOOL.correct(value)
+    return ret
 
 
 def write_object(object, file):
@@ -34,9 +46,10 @@ def preprocess(input_file_path, output_file_path):
 
         setting = None
 
-        for line in input_file:
+        for line in tqdm(input_file, total=get_num_lines(input_file_path)):
             if "id=" in line:
-                write_object(curr_object, output_file)
+                corr_object = correct_object(curr_object)
+                write_object(corr_object, output_file)
                 curr_object = copy.copy(object_default)
                 continue
 
@@ -56,7 +69,8 @@ def preprocess(input_file_path, output_file_path):
                 continue
             curr_object[setting] += line
 
-        write_object(curr_object, output_file)
+        corr_object = correct_object(curr_object)
+        write_object(corr_object, output_file)
 
 
 def main():
