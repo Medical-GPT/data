@@ -4,6 +4,7 @@ import os
 assert os.path.exists(PREPROCESSED_FILE), "Make sure you have preprocessed data"
 
 ALLOWED_CHARACTERS = "!\"#$%&'‘’()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]_`abcdefghijklmnopqrstuvwxyz{|}~ \n"
+QUOTATIONS = "“”‘"
 
 
 def clean():
@@ -14,6 +15,8 @@ def clean():
         open(temp_file, 'w') as out_file:
     # fmt: on
         for line in in_file:
+            for quotation in QUOTATIONS:
+                line = line.replace(quotation, "\"")
             if any(c not in ALLOWED_CHARACTERS for c in line):
                 continue
             out_file.write(line)
