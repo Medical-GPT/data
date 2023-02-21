@@ -1,17 +1,15 @@
-from constants import PREPROCESSED_FILE, PREPROCESSED_FILE_FOLDER
 import os
-
-assert os.path.exists(PREPROCESSED_FILE), "Make sure you have preprocessed data"
 
 ALLOWED_CHARACTERS = "!\"#$%&'‘’()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]_`abcdefghijklmnopqrstuvwxyz{|}~ \n"
 QUOTATIONS = "“”‘"
 
 
-def clean():
-    temp_file = f"{PREPROCESSED_FILE_FOLDER}/temp.txt"
+def clean_special_characters(file_path):
+    parent_directory = "/".join(file_path.split("/")[:-1])
+    temp_file = f"{parent_directory}/temp.txt"
     # fmt: off
     with \
-        open(PREPROCESSED_FILE, 'r') as in_file, \
+        open(file_path, 'r') as in_file, \
         open(temp_file, 'w') as out_file:
     # fmt: on
         for line in in_file:
@@ -21,6 +19,5 @@ def clean():
                 continue
             out_file.write(line)
 
-
-if __name__ == "__main__":
-    clean()
+    os.remove(file_path)
+    os.rename(temp_file, file_path)

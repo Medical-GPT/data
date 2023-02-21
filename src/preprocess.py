@@ -6,6 +6,7 @@ import os
 from tqdm import tqdm
 import language_tool_python
 from utils import get_num_lines
+from clean_special_characters import clean_special_characters
 
 # Start a Java server for spelling correction
 LANGUAGE_TOOL = language_tool_python.LanguageTool("en-US")
@@ -78,6 +79,7 @@ def main():
         concat_raw_files()
 
     preprocess(COMBINED_FILE, PREPROCESSED_FILE)
+    clean_special_characters(PREPROCESSED_FILE)
 
 
 if __name__ == "__main__":
