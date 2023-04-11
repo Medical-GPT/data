@@ -5,9 +5,13 @@ A repository for downloading and preprocessing the training and validation data.
 You need to have python3 and Java installed.
 Afterwards run `make install` in the root directory to install all repository dependencies.
 
+## Loading the pretraining dataset (Used for running prerpocessing of chatbot)
+Run `make download_pretraining` to download the raw files (~3GB compressed)
+Run `make decompress_pretraining` to decompress the raw files
+Run `make preprocess_pretraining` to produce a preprocessed input file used in pretraining in *chatbot* repo
+
 ## Loading the dataset
 Run `make download` to download the raw files used for training (~700MB)
-
 Run `make preprocess` to preprocess the files
 
 ## References

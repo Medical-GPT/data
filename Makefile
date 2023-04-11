@@ -42,6 +42,24 @@ download: ## Downloads the raw files used for training
 	@echo "    [✓]"
 	@echo
 
+download_pretraining: ## Downloads the raw files used for pretraining the model
+	@echo "==> Downloading files..."
+	@venv/bin/python src/pretraining/download.py
+	@echo "    [✓]"
+	@echo
+
+decompress_pretraining: ## Decompresses the raw files used for pretraining the model
+	@echo "==> Decompressing files..."
+	@venv/bin/python src/pretraining/decompress.py
+	@echo "    [✓]"
+	@echo
+
+preprocess_pretraining: ## Preprocesses the raw files used for pretraining the model
+	@echo "==> Preprocessing files..."
+	@venv/bin/python src/pretraining/preprocess.py
+	@echo "    [✓]"
+	@echo
+
 concat: ## Concat raw files into a single file
 	@echo "==> Concatenating files..."
 	@venv/bin/python src/concat.py
