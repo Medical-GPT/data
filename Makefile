@@ -54,7 +54,7 @@ preprocess_pretraining: ## Preprocesses the raw files used for pretraining the m
 	@echo "    [✓]"
 	@echo
 
-pretraining: decompress_pretraining preprocess_pretraining ## Runs the pretraining pipeline
+pretraining: download_pretraining decompress_pretraining preprocess_pretraining ## Runs the pretraining pipeline
 	@echo "Pretraining dataset complete   [✓]"
 	@echo
 
