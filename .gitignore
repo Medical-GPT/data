@@ -1,4 +1,6 @@
 venv/
-data/
+data/*
+!data/medical-finetuning.txt
 .vscode/
 __pycache__/
+.DS_Store

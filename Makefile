@@ -36,24 +36,34 @@ clean: ## Cleans up temporary files
 	@echo "    [✓]"
 	@echo
 
-download: ## Downloads the raw files used for training
+download_pretraining: ## Downloads the raw files used for pretraining the model
 	@echo "==> Downloading files..."
-	@venv/bin/python src/download.py
+	@venv/bin/python src/pretraining/download.py
 	@echo "    [✓]"
 	@echo
 
-concat: ## Concat raw files into a single file
-	@echo "==> Concatenating files..."
-	@venv/bin/python src/concat.py
+decompress_pretraining: ## Decompresses the raw files used for pretraining the model
+	@echo "==> Decompressing files..."
+	@venv/bin/python src/pretraining/decompress.py
 	@echo "    [✓]"
 	@echo
 
-preprocess: ## Preprocess concatenated file (created if not present)
-	@echo "==> Preprocessing file..."
-	@venv/bin/python src/preprocess.py
+preprocess_pretraining: ## Preprocesses the raw files used for pretraining the model
+	@echo "==> Preprocessing files..."
+	@venv/bin/python src/pretraining/preprocess.py
 	@echo "    [✓]"
 	@echo
 
-.PHONY: install uninstall clean dwonload concat preprocess help
+pretraining: decompress_pretraining preprocess_pretraining ## Runs the pretraining pipeline
+	@echo "Pretraining dataset complete   [✓]"
+	@echo
+
+finetuning: ## Load empathic dialogues for finetuning the model
+	@echo "==> Preparing empathic finetuning dataset..."
+	@venv/bin/python src/finetuning/finetuning.py
+	@echo "    [✓]"
+	@echo
+
+.PHONY: install uninstall clean download_pretraining decompress_pretraining preprocess_pretraining help
 help: ## Shows available targets
 	@fgrep -h "## " $(MAKEFILE_LIST) | fgrep -v fgrep | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-13s\033[0m %s\n", $$1, $$2}'
