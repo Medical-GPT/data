@@ -36,12 +36,6 @@ clean: ## Cleans up temporary files
 	@echo "    [✓]"
 	@echo
 
-download: ## Downloads the raw files used for training
-	@echo "==> Downloading files..."
-	@venv/bin/python src/download.py
-	@echo "    [✓]"
-	@echo
-
 download_pretraining: ## Downloads the raw files used for pretraining the model
 	@echo "==> Downloading files..."
 	@venv/bin/python src/pretraining/download.py
@@ -60,19 +54,16 @@ preprocess_pretraining: ## Preprocesses the raw files used for pretraining the m
 	@echo "    [✓]"
 	@echo
 
-concat: ## Concat raw files into a single file
-	@echo "==> Concatenating files..."
-	@venv/bin/python src/concat.py
+pretraining: decompress_pretraining preprocess_pretraining ## Runs the pretraining pipeline
+	@echo "Pretraining dataset complete   [✓]"
+	@echo
+
+finetuning: ## Load empathic dialogues for finetuning the model
+	@echo "==> Preparing empathic finetuning dataset..."
+	@venv/bin/python src/finetuning/finetuning.py
 	@echo "    [✓]"
 	@echo
 
-preprocess: ## Preprocess data: Concat files, fix spelling/grammar, remove special characters
-	@echo "==> Preprocessing file..."
-	@venv/bin/python src/preprocess.py
-	@echo "    [✓]"
-	@echo
-
-
-.PHONY: install uninstall clean dwonload concat preprocess clean-special-characters help
+.PHONY: install uninstall clean download_pretraining decompress_pretraining preprocess_pretraining help
 help: ## Shows available targets
 	@fgrep -h "## " $(MAKEFILE_LIST) | fgrep -v fgrep | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-13s\033[0m %s\n", $$1, $$2}'
