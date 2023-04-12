@@ -10,9 +10,9 @@ Run `make pretraining` to prepare the pretraining dataset. The file `data/pretra
 
 Alternatively, you can run each of the preprocessing steps 1 by 1 in case one of them fails.
 
-Run `make download_pretraining` to download the raw files (~3GB compressed)
-Run `make decompress_pretraining` to decompress the raw files
-Run `make preprocess_pretraining` to produce a preprocessed input file used in pretraining in *chatbot* repo
+1. Run `make download_pretraining` to download the raw files (~3GB compressed)
+2. Run `make decompress_pretraining` to decompress the raw files
+3. Run `make preprocess_pretraining` to produce a preprocessed input file used in pretraining in *chatbot* repo
 
 ## Loading empathic finetuning dataset (Used for finetuning the chatbot)
 Run `make finetuning` to prepare the empathic finetuning dataset. The file `data/empathic-finetuning.txt` will appear once the process completes.
@@ -21,6 +21,7 @@ Run `make finetuning` to prepare the empathic finetuning dataset. The file `data
 `data/medical-finetuning.txt`
 
 Data generated from OpenAI's ChatGPT language model 12/02/2023. Source: OpenAI, [https://openai.com/].
+
 Prompt used for generating data:
 ```
 Can you generate similar conversational pairs as the ones below. They should be as unique as possible given the previously generated ones. You can start the prompt of the Patient as a question as well. Generate as much as the output can fit, after the message limit has been reached I will write "continue" and you will continue generating by starting from where you last left off:
