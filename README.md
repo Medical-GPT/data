@@ -19,6 +19,7 @@ Run `make finetuning` to prepare the empathic finetuning dataset. The file `data
 
 ## References
 `data/medical-finetuning.txt`
+
 Data generated from OpenAI's ChatGPT language model 12/02/2023. Source: OpenAI, [https://openai.com/].
 Prompt used for generating data:
 ```
@@ -36,6 +37,7 @@ Doctor: I see. Have you experienced any changes in your menstrual cycle or vagin
 
 
 `data/empathic-finetuning.txt`
+
 @inproceedings{rashkin-etal-2019-towards,
     title = "Towards Empathetic Open-domain Conversation Models: A New Benchmark and Dataset",
     author = "Rashkin, Hannah  and
