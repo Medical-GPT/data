@@ -1,4 +1,4 @@
-from constants import RAW_FILE_FOLDER, PREPROCESSED_FILE
+from constants import PRETRAINING_DIR, PREPROCESSED_FILE
 from tqdm import tqdm
 import re
 
@@ -6,7 +6,7 @@ allowed_tokens = "\t\n !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWX
 regex = re.compile("[^{}]+".format(allowed_tokens))
 
 with open(PREPROCESSED_FILE, "w") as out_file:
-    for txt_file in tqdm(RAW_FILE_FOLDER.glob("**/*.txt")):
+    for txt_file in tqdm(PRETRAINING_DIR.glob("**/*.txt")):
         with open(txt_file, "r", encoding="iso-8859-1") as f:
             file_content = f.read()
         start_index = file_content.find("==== Body") + len("==== Body")

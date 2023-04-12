@@ -1,6 +1,6 @@
 import requests
 from tqdm import tqdm
-from constants import RAW_FILE_FOLDER
+from constants import PRETRAINING_DIR
 
 """
 PMC Open Access Subset [Internet]. Bethesda (MD): National Library of Medicine.
@@ -15,7 +15,7 @@ files = [
 ]
 
 for idx, file in tqdm(enumerate(files), total=len(files)):
-    save_path = RAW_FILE_FOLDER / file
+    save_path = PRETRAINING_DIR / file
     file_url = url + file
     response = requests.get(file_url, stream=True)
     print(response)

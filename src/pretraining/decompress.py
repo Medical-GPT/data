@@ -1,8 +1,8 @@
 import tarfile
-from constants import RAW_FILE_FOLDER
+from constants import PRETRAINING_DIR
 
-for gzip in RAW_FILE_FOLDER.glob("*.gz"):
-    output_path = RAW_FILE_FOLDER
+for gzip in PRETRAINING_DIR.glob("*.gz"):
+    output_path = PRETRAINING_DIR
 
     print(f"Extracting {gzip} ...")
 
