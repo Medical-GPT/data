@@ -1,6 +1,7 @@
 venv/
 data/*
 !data/medical-finetuning.txt
+!data/empathic-finetuning.txt
 .vscode/
 __pycache__/
 .DS_Store

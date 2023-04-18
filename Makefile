@@ -58,12 +58,6 @@ pretraining: download_pretraining decompress_pretraining preprocess_pretraining 
 	@echo "Pretraining dataset complete   [✓]"
 	@echo
 
-finetuning: ## Load empathic dialogues for finetuning the model
-	@echo "==> Preparing empathic finetuning dataset..."
-	@venv/bin/python src/finetuning/finetuning.py
-	@echo "    [✓]"
-	@echo
-
 .PHONY: install uninstall clean download_pretraining decompress_pretraining preprocess_pretraining help
 help: ## Shows available targets
 	@fgrep -h "## " $(MAKEFILE_LIST) | fgrep -v fgrep | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-13s\033[0m %s\n", $$1, $$2}'
